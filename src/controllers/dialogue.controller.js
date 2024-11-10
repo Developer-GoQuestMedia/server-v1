@@ -2,6 +2,24 @@ import { Dialogue } from '../models/Dialogue.js';
 import { checkR2File } from '../utils/checkR2File.js';
 import { getR2PreSignedUrl } from '../utils/getR2PreSignedUrl.js';
 
+/**
+ * @swagger
+ * /dialogues:
+ *   get:
+ *     summary: Get all dialogues
+ *     parameters:
+ *       - in: query
+ *         name: projectId
+ *         required: true
+ *         description: The ID of the project to fetch dialogues for
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: A list of dialogues
+ *       500:
+ *         description: Internal server error
+ */
 export const getDialogues = async (req, res) => {
   try {
     const dialogues = await Dialogue.find({ project: req.query.projectId })
@@ -28,6 +46,37 @@ export const getDialogues = async (req, res) => {
   }
 };
 
+/**
+ * @swagger
+ * /dialogues/{id}:
+ *   put:
+ *     summary: Update a dialogue
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the dialogue to update
+ *         schema:
+ *           type: string
+ *       - in: body
+ *         name: body
+ *         required: true
+ *         description: The updated dialogue data
+ *         schema:
+ *           type: object
+ *           properties:
+ *             original:
+ *               type: string
+ *             translated:
+ *               type: string
+ *     responses:
+ *       200:
+ *         description: The updated dialogue
+ *       404:
+ *         description: Dialogue not found
+ *       500:
+ *         description: Internal server error
+ */
 export const updateDialogue = async (req, res) => {
   try {
     const { id } = req.params;

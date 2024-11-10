@@ -15,7 +15,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.1",
-    "mongoose": "^7.0.0"
+    "mongoose": "^7.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
